@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerJoystickController : MonoBehaviour
 {
 
+    public GameObject gameOverCanvas;
+    public GameObject nextLevelCanvas;
     
 
     public GameObject confetti;
@@ -83,11 +85,13 @@ public class PlayerJoystickController : MonoBehaviour
     {
         if(other.tag == "FinalTrigger")
         {
+            Invoke("LoadNextLevel", 1.5f);
             yaySound.Play();
             confetti.SetActive(true);
         }
         if (other.tag == "Mom")
         {
+            gameOverCanvas.SetActive(true);
             Debug.Log("Game Over!");
         }
     }
@@ -97,5 +101,8 @@ public class PlayerJoystickController : MonoBehaviour
         tutorCanvas.SetActive(false);
     }
 
-
+    void LoadNextLevel()
+    {
+        nextLevelCanvas.SetActive(true);
+    }
 }
